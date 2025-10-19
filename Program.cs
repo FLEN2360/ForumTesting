@@ -1,3 +1,6 @@
+using ForumTesting.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace ForumTesting
 {
     public class Program
@@ -8,6 +11,9 @@ namespace ForumTesting
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<MessageContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MessageContext")));
 
             var app = builder.Build();
 
